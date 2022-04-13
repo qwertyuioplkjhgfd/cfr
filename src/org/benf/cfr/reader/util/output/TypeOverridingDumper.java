@@ -28,6 +28,11 @@ public class TypeOverridingDumper extends DelegatingDumper {
     }
 
     @Override
+    public Dumper dump(JavaTypeInstance javaTypeInstance, boolean defines) {
+        return dump(javaTypeInstance);
+    }
+
+    @Override
     public Dumper withTypeUsageInformation(TypeUsageInformation innerclassTypeUsageInformation) {
         return new TypeOverridingDumper(delegate, innerclassTypeUsageInformation);
     }
