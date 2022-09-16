@@ -80,7 +80,7 @@ public class MethodPrototypeAnnotationsHelper {
         return typeEntries;
     }
 
-    void dumpParamType(JavaTypeInstance arg, final int paramIdx, Dumper d) {
+    public void dumpParamType(JavaTypeInstance arg, final int paramIdx, Dumper d) {
         List<AnnotationTableEntry> entries = getParameterAnnotations(paramIdx);
         List<AnnotationTableTypeEntry> typeEntries = getTypeParameterAnnotations(paramIdx);
         DeclarationAnnotationsInfo annotationsInfo = DeclarationAnnotationHelper.getDeclarationInfo(arg, entries, typeEntries);
