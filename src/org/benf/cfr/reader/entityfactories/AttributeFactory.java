@@ -81,6 +81,8 @@ public class AttributeFactory {
                 return new AttributeRecord(raw, cp, classFileVersion);
             } else if (AttributePermittedSubclasses.ATTRIBUTE_NAME.equals(attributeName)) {
                 return new AttributePermittedSubclasses(raw, cp);
+            } else if (AttributeMethodParameters.ATTRIBUTE_NAME.equals(attributeName)) {
+                return new AttributeMethodParameters(raw, cp);
             }
         } catch (Exception e) {
             // Can't handle it? Continue and process as an unknown attribute.

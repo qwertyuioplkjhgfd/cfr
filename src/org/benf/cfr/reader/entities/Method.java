@@ -7,6 +7,7 @@ import org.benf.cfr.reader.bytecode.analysis.variables.VariableNamer;
 import org.benf.cfr.reader.bytecode.analysis.variables.VariableNamerFactory;
 import org.benf.cfr.reader.bytecode.analysis.types.*;
 import org.benf.cfr.reader.bytecode.analysis.types.DeclarationAnnotationHelper.DeclarationAnnotationsInfo;
+import org.benf.cfr.reader.bytecode.analysis.variables.VariableNamerMethodParameter;
 import org.benf.cfr.reader.entities.annotations.AnnotationTableEntry;
 import org.benf.cfr.reader.entities.annotations.AnnotationTableTypeEntry;
 import org.benf.cfr.reader.entities.annotations.ElementValue;
@@ -145,7 +146,12 @@ public class Method implements KnowsRawSize, TypeUsageCollectable {
         AttributeCode codeAttribute = attributes.getByName(AttributeCode.ATTRIBUTE_NAME);
         if (codeAttribute == null) {
             // Because we don't have a code attribute, we don't have a local variable table.
-            this.variableNamer = VariableNamerFactory.getNamer(null, cp);
+            AttributeMethodParameters methodParameters = attributes.getByName(AttributeMethodParameters.ATTRIBUTE_NAME);
+            if (methodParameters != null) {
+                this.variableNamer = new VariableNamerMethodParameter(methodParameters.getParameters());
+            } else {
+                this.variableNamer = VariableNamerFactory.getNamer(null, cp);
+            }
             this.codeAttribute = null;
         } else {
             this.codeAttribute = codeAttribute;
