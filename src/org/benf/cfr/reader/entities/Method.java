@@ -148,7 +148,7 @@ public class Method implements KnowsRawSize, TypeUsageCollectable {
             // Because we don't have a code attribute, we don't have a local variable table.
             AttributeMethodParameters methodParameters = attributes.getByName(AttributeMethodParameters.ATTRIBUTE_NAME);
             if (methodParameters != null) {
-                this.variableNamer = new VariableNamerMethodParameter(methodParameters.getParameters());
+                this.variableNamer = new VariableNamerMethodParameter(methodParameters.getParameters(), cp);
             } else {
                 this.variableNamer = VariableNamerFactory.getNamer(null, cp);
             }

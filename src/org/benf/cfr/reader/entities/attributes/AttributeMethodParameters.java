@@ -26,7 +26,7 @@ public class AttributeMethodParameters extends Attribute {
         for (long i = 0; i < count; i++) {
             int nameIndex = raw.getU2At(offset);
             int accessFlags = raw.getU2At(offset + 2);
-            parameters.add(new MethodParameterEntry(cp.getEntry(nameIndex), accessFlags));
+            parameters.add(new MethodParameterEntry(nameIndex, accessFlags));
         }
     }
 
